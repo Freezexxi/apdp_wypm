@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:wypm_apdp/classes/course_program.dart';
-import 'package:wypm_apdp/classes/enrollment_record.dart';
 import 'package:wypm_apdp/classes/student.dart';
-import 'package:wypm_apdp/static_data.dart';
 
 class LearnerMethods {
   // Register a new student in Firestore

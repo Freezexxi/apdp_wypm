@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "206112462960",
+    "project_id": "apass1bywypm",
+    "storage_bucket": "apass1bywypm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206112462960:android:bfe5c4c324def4d55a7cb5",
+        "android_client_info": {
+          "package_name": "com.example.wypm_apdp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfsR8Z5P9DU-K9-FWUOkdGWYQFPM3uecA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

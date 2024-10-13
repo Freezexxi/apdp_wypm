@@ -59,7 +59,7 @@ class CourseProgramMethods {
       await FirebaseFirestore.instance
           .collection("coursePrograms")
           .doc(program.programId)
-          .update(program.toMap());
+          .set(program.toMap());
       result = true;
     } catch (e) {
       result = false;

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:wypm_apdp/classes/enrollment_record.dart';
 
-class EnrollmentServices {
+class EnrollRecordMethods {
   // Retrieve the total count of enrollment records from Firestore
   Future<int> fetchTotalEnrollments() async {
     int enrollmentCount = 0;

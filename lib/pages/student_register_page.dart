@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:wypm_apdp/classes/course_program.dart';
-import 'package:wypm_apdp/classes/student.dart';
+import 'package:wypm_apdp/classes/learner.dart';
 import 'package:wypm_apdp/custom_widgets/custom_text_field.dart';
 import 'package:wypm_apdp/custom_widgets/display_status.dart';
 import 'package:wypm_apdp/data.dart';
@@ -54,7 +54,7 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
   final TextEditingController _addressCon = TextEditingController();
   String? _gender;
   String? _sectionValue;
-  final List<CourseProgram> _selectedCourses = [];
+  List<CourseProgram> _selectedCourses = [];
   List<CourseProgram> _availableCourses = [];
   double _totalCourseFees = 0;
 
@@ -62,8 +62,12 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
 
   void _onCourseSelectionChanged(List<CourseProgram> selectedCourses) {
     setState(() {
-      _selectedCourses.clear();
-      _selectedCourses.addAll(selectedCourses);
+      _selectedCourses = [];
+
+      for (CourseProgram c in selectedCourses) {
+        _selectedCourses.add(c);
+      }
+
       _updateTotalFees();
     });
   }
@@ -96,8 +100,8 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
       var uniqueId = uuidGenerator.v1();
       final DateTime startDate = DateTime.now();
 
-      // Create new student object
-      Learner s1 = Learner.learnerFactory(
+      // Create new object
+      Learner newLearner = Learner.learnerFactory(
         uniqueId,
         _nameCon.text,
         _emailCon.text,
@@ -110,22 +114,32 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
       );
 
       // Register the student
-      String learnerId = await methods.addLearner(s1);
+      String learnerId = await methods.addLearner(newLearner);
 
       if (learnerId.isNotEmpty) {
         displayStatus(context, "Registration Successful");
-        if (_selectedCourses.isNotEmpty) {
-          // Enrollment logic
+        if(_selectedCourses.isNotEmpty){
+          bool status = await methods.enrollLearnerInCourses(newLearner, _selectedCourses);
+          if(status){
+            displayStatus(context, "Courses Enrolled!");
+          }else{
+            displayStatus(context, "Error Course Enrollment!");
+          }
         }
       } else {
         displayStatus(context, "Registration Failed");
       }
+
+
     }
   }
 
   Future<void> fetchCourses() async {
     CourseProgramMethods methods = CourseProgramMethods();
-    _availableCourses = await methods.fetchAllCoursePrograms();
+    List<CourseProgram> courses = await methods.fetchAllCoursePrograms();
+    setState(() {
+      _availableCourses = courses;
+    });
   }
 
   @override
@@ -305,6 +319,11 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
                 ],
               ),
               const SizedBox(height: 20),
+              const Text(
+                "Optional Course: Select course to apply!",
+                style: TextStyle(fontSize: 20),
+              ),
+              const SizedBox(height: 9),
               _CourseListWidget(
                 coursesAvailable: _availableCourses,
                 selectedCourses: _selectedCourses,

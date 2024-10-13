@@ -39,23 +39,13 @@ class CourseProgram {
     );
   }
 
-  // @override
-  // bool operator ==(Object other) {
-  //   if (identical(this, other)) return true;
-  //   if (other is! CourseProgram) return false;
-  //   return _programId == other._programId &&
-  //       programName == other.programName &&
-  //       feeInMMK == other.feeInMMK &&
-  //       difficultyLevel == other.difficultyLevel &&
-  //       overview == other.overview;
-  // }
-  //
-  // @override
-  // int get hashCode {
-  //   return _programId.hashCode ^
-  //   programName.hashCode ^
-  //   feeInMMK.hashCode ^
-  //   difficultyLevel.hashCode ^
-  //   overview.hashCode;
-  // }
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is CourseProgram && other.programId == programId;
+  }
+
+  @override
+  int get hashCode => programId.hashCode;
 }

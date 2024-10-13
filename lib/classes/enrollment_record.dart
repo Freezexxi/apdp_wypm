@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EnrollmentRecord {
-  final String _recordId;
+  final String _enrollRecordId;
   DateTime enrollmentDate;
   num discountRate;
   double finalCost;
@@ -11,7 +11,7 @@ class EnrollmentRecord {
   String programTitle;
 
   // Constructor with all required fields
-  EnrollmentRecord(this._recordId,
+  EnrollmentRecord(this._enrollRecordId,
       {required this.enrollmentDate,
         required this.discountRate,
         required this.finalCost,
@@ -21,12 +21,12 @@ class EnrollmentRecord {
         required this.programTitle});
 
   // Getter for private recordId
-  String get recordId => _recordId;
+  String get recordId => _enrollRecordId;
 
   // Convert object to a Map (for Firestore)
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toFirestoreMap() {
     return {
-      'recordId': _recordId,
+      'recordId': _enrollRecordId,
       'enrollmentDate': enrollmentDate,
       'discountRate': discountRate,
       'finalCost': finalCost,
@@ -38,7 +38,7 @@ class EnrollmentRecord {
   }
 
   // Method to create an EnrollmentRecord object from Firestore data
-  static EnrollmentRecord fromSnapshot(DocumentSnapshot snapshot) {
+  static EnrollmentRecord fromFirestoreDocument(DocumentSnapshot snapshot) {
     final data = snapshot.data() as Map<String, dynamic>;
     final Timestamp timestamp = data['enrollmentDate'] as Timestamp;
     final DateTime convertedDate = timestamp.toDate();

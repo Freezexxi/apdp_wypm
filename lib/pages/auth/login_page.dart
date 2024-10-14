@@ -1,7 +1,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
-// import 'package:star_education_centre/static_data.dart';
-// import 'package:star_education_centre/utils/widget_text_field.dart';
+// import 'package:star_education_centre/data.dart';
+// import 'package:star_education_centre/utils/custom_text_field.dart';
 // import 'package:star_education_centre/utils/local_storage_service.dart';
 // import 'package:star_education_centre/utils/status_snackbar.dart';
 // import 'package:url_launcher/url_launcher.dart';

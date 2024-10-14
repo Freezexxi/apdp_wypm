@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wypm_apdp/classes/learner.dart';
+import 'package:wypm_apdp/custom_widgets/display_status.dart';
 import 'package:wypm_apdp/methods/student_methods.dart';
 import 'package:wypm_apdp/pages/learner_edit_page.dart';
 
@@ -39,6 +40,15 @@ class _StudentListPageState extends State<StudentListPage> {
               student.learnerId.contains(query))
           .toList();
     });
+  }
+
+  Future<void> _deleteLearner(String id)async{
+    bool status = await _learnerMethods.removeLearner(id);
+    if(status){
+      displayStatus(context, "Delete Successful");
+    }else{
+      displayStatus(context, "Delete Fail!");
+    }
   }
 
   @override
@@ -141,7 +151,9 @@ class _StudentListPageState extends State<StudentListPage> {
                                             IconButton(
                                               icon: const Icon(Icons.delete,
                                                   color: Colors.red),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                _deleteLearner(student.learnerId);
+                                              },
                                             ),
                                           ],
                                         ),

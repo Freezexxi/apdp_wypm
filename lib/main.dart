@@ -1,9 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mhk_star_education/pages/shared_page.dart';
-import 'package:mhk_star_education/pages/student_list.dart';
-import 'package:mhk_star_education/pages/student_page.dart';
+import 'package:wypm_apdp/pages/navigation_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,13 +9,13 @@ void main() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-          apiKey: "AIzaSyCAMNpP-SDF67unSZD_7VUROLKIEAZm9Y4",
-          authDomain: "mhk-star-education.firebaseapp.com",
-          projectId: "mhk-star-education",
-          storageBucket: "mhk-star-education.appspot.com",
-          messagingSenderId: "562118371848",
-          appId: "1:562118371848:web:a68ff27d64ca6eea4f7fbd",
-          measurementId: "G-1KDRE12MWE"),
+          apiKey: "AIzaSyCUigxH9KJ42CW5elo8Rbi8U8cL_JFpCU8",
+          authDomain: "apass1bywypm.firebaseapp.com",
+          projectId: "apass1bywypm",
+          storageBucket: "apass1bywypm.appspot.com",
+          messagingSenderId: "206112462960",
+          appId: "1:206112462960:web:8fea99ffe8e8b0895a7cb5",
+          measurementId: "G-0Z0ZK3XKWE"),
     );
   } else {
     await Firebase.initializeApp();
@@ -42,7 +40,7 @@ class App extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      home: const SharedPage(),
+      home: const NavigationPage(),
     );
   }
 }

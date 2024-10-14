@@ -35,6 +35,7 @@ class LearnerMethods {
 
       return learners;
     } catch (e) {
+      print(e);
       return [];
     }
   }
@@ -105,7 +106,7 @@ class LearnerMethods {
           learner.enrolledCourses);
 
       for (CourseProgram course in courses) {
-        if (!updatedLearner.enrolledCourses.contains(course.programName)) {
+        if (!updatedLearner.enrolledCourses.contains(course.programId)) {
           double discountedAmount = (course.feeInMMK * updatedLearner.getDiscount()) / 100;
           double finalFee = course.feeInMMK - discountedAmount;
           String enrollmentId = uuidGenerator.v1();

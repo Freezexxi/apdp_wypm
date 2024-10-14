@@ -18,18 +18,18 @@ class EnrollRecordMethods {
   }
 
   // Retrieve all enrollment records for a specific student from Firestore
-  Future<List<EnrollmentRecord>> fetchEnrollmentsByStudent(String studentId) async {
+  Future<List<EnrollmentRecord>> fetchEnrollmentsByLearner(String learnerId) async {
     List<EnrollmentRecord> studentEnrollments = [];
     try {
       QuerySnapshot snapshot = await FirebaseFirestore.instance
           .collection('enrollments')
-          .where('studentId', isEqualTo: studentId)
+          .where('learnerId', isEqualTo: learnerId)
           .get();
       studentEnrollments = snapshot.docs
           .map((doc) => EnrollmentRecord.fromFirestoreDocument(doc))
           .toList();
     } catch (e) {
-      print("Error retrieving enrollments for student $studentId: $e");
+      print("Error retrieving enrollments for student $learnerId: $e");
       studentEnrollments = [];
     }
     return studentEnrollments;

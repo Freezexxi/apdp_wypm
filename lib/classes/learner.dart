@@ -68,10 +68,22 @@ class Learner implements Individual {
     final String group = learnerData['group'] as String;
     final String genderIdentity = learnerData['genderIdentity'] as String;
     final Timestamp joinedDate = learnerData['joinedDate'] as Timestamp;
-    final List<String> enrolledCourses = (learnerData['enrolledCourses'] as List<String>);
 
-    return learnerFactory(learnerId, fullName, emailAddress, contactNumber, homeAddress,
-        joinedDate, group, genderIdentity, enrolledCourses);
+    // Convert dynamic list to List<String>
+    final List<dynamic> enrolledCoursesDynamic = learnerData['enrolledCourses'] as List<dynamic>;
+    final List<String> enrolledCourses = enrolledCoursesDynamic.cast<String>();
+
+    return learnerFactory(
+      learnerId,
+      fullName,
+      emailAddress,
+      contactNumber,
+      homeAddress,
+      joinedDate,
+      group,
+      genderIdentity,
+      enrolledCourses,
+    );
   }
 
   // Factory method to create instances based on number of enrollments

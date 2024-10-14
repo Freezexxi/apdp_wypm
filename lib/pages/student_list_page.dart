@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wypm_apdp/classes/learner.dart';
 import 'package:wypm_apdp/methods/student_methods.dart';
+import 'package:wypm_apdp/pages/learner_edit_page.dart';
 
 class StudentListPage extends StatefulWidget {
   const StudentListPage({super.key});
@@ -34,8 +35,8 @@ class _StudentListPageState extends State<StudentListPage> {
     setState(() {
       filteredStudents = students!
           .where((student) =>
-      student.fullName.toLowerCase().contains(query.toLowerCase()) ||
-          student.learnerId.contains(query))
+              student.fullName.toLowerCase().contains(query.toLowerCase()) ||
+              student.learnerId.contains(query))
           .toList();
     });
   }
@@ -48,7 +49,8 @@ class _StudentListPageState extends State<StudentListPage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0), // Adds padding around the content
+          padding: const EdgeInsets.all(16.0),
+          // Adds padding around the content
           child: SelectionArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +65,7 @@ class _StudentListPageState extends State<StudentListPage> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 20.0), // Adds space between title and search bar
+                const SizedBox(height: 20.0),
                 // Search bar
                 TextField(
                   controller: _searchController,
@@ -75,71 +77,81 @@ class _StudentListPageState extends State<StudentListPage> {
                     ),
                   ),
                   onChanged: (value) {
-                    _filterStudents(value); // Call filter method on text change
+                    _filterStudents(value);
                   },
                 ),
-                const SizedBox(height: 20.0), // Adds space between search bar and list
+                const SizedBox(height: 20.0),
                 students == null
                     ? const Center(child: CircularProgressIndicator())
                     : filteredStudents!.isEmpty
-                    ? const Center(
-                  child: Text(
-                    'No students found.',
-                    style: TextStyle(fontSize: 16.0),
-                  ),
-                )
-                    : Expanded(
-                  child: ListView.builder(
-                    itemCount: filteredStudents!.length,
-                    itemBuilder: (context, index) {
-                      final student = filteredStudents![index];
-                      return Card(
-                        margin: const EdgeInsets.symmetric(vertical: 8.0),
-                        elevation: 2.0,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    student.fullName,
-                                    style: const TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
+                        ? const Center(
+                            child: Text(
+                              'No students found.',
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                          )
+                        : Expanded(
+                            child: ListView.builder(
+                              itemCount: filteredStudents!.length,
+                              itemBuilder: (context, index) {
+                                final student = filteredStudents![index];
+                                return Card(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  elevation: 2.0,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              student.fullName,
+                                              style: const TextStyle(
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 4.0),
+                                            Text('ID: ${student.learnerId}'),
+                                            const SizedBox(height: 4.0),
+                                            Text('Section: ${student.group}'),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            IconButton(
+                                              icon: const Icon(Icons.edit,
+                                                  color: Colors.blue),
+                                              onPressed: () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        LearnerEditPage(
+                                                            learner: student),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                            IconButton(
+                                              icon: const Icon(Icons.delete,
+                                                  color: Colors.red),
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  const SizedBox(height: 4.0),
-                                  Text('ID: ${student.learnerId}'),
-                                  const SizedBox(height: 4.0),
-                                  Text('Section: ${student.group}'),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  IconButton(
-                                    icon: const Icon(Icons.edit,
-                                        color: Colors.blue),
-                                    onPressed: () {},
-                                  ),
-                                  IconButton(
-                                    icon: const Icon(Icons.delete,
-                                        color: Colors.red),
-                                    onPressed: () {},
-                                  ),
-                                ],
-                              ),
-                            ],
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
               ],
             ),
           ),

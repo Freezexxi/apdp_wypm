@@ -4,7 +4,7 @@ import 'package:wypm_apdp/custom_widgets/display_status.dart';
 import 'package:wypm_apdp/methods/course_program_methods.dart';
 import 'package:wypm_apdp/methods/student_methods.dart';
 
-import 'learner_edit_page.dart'; // Make sure to import the edit page
+import 'learner_edit_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,8 +17,8 @@ class _HomePageState extends State<HomePage> {
   int totalStudents = -1;
   int totalCourses = -1;
   String searchQuery = '';
-  LearnerMethods _learnerMethods = LearnerMethods();
-  CourseProgramMethods _courseProgramMethods = CourseProgramMethods();
+  final LearnerMethods _learnerMethods = LearnerMethods();
+  final CourseProgramMethods _courseProgramMethods = CourseProgramMethods();
   List<Learner> _learners = [];
 
   @override
@@ -86,10 +86,10 @@ class _HomePageState extends State<HomePage> {
                   searchQuery = value; // Update the search query
                 });
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Search Students',
                 border: OutlineInputBorder(),
-                suffixIcon: const Icon(Icons.search),
+                suffixIcon: Icon(Icons.search),
               ),
             ),
             const SizedBox(height: 20),

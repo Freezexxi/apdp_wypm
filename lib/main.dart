@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:wypm_apdp/pages/navigation_page.dart';
+import 'package:wypm_apdp/pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +40,7 @@ class App extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      home: const NavigationPage(),
+      home: const LoginPage(),
     );
   }
 }

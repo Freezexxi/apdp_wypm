@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:wypm_apdp/classes/course_program.dart';
 import 'package:wypm_apdp/custom_widgets/display_status.dart';
+import 'package:wypm_apdp/custom_widgets/log_out_button.dart';
+import 'package:wypm_apdp/custom_widgets/refresh_button.dart';
 import 'package:wypm_apdp/methods/course_program_methods.dart';
 
 class ManageCoursePage extends StatefulWidget {
@@ -188,6 +190,11 @@ class _ManageCoursePageState extends State<ManageCoursePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Manage Courses"),
+        actions:  [
+          RefreshButton(),
+          const SizedBox(width: 5,),
+          const LogOutButton(),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(

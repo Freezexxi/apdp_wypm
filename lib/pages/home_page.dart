@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wypm_apdp/classes/learner.dart';
 import 'package:wypm_apdp/custom_widgets/display_status.dart';
+import 'package:wypm_apdp/custom_widgets/log_out_button.dart';
+import 'package:wypm_apdp/custom_widgets/refresh_button.dart';
 import 'package:wypm_apdp/methods/course_program_methods.dart';
 import 'package:wypm_apdp/methods/student_methods.dart';
 
@@ -57,6 +59,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home Page'),
+        actions: [
+          RefreshButton(),
+          const SizedBox(
+            width: 5,
+          ),
+          const LogOutButton(),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

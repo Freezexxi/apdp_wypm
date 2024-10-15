@@ -4,6 +4,8 @@ import 'package:wypm_apdp/classes/course_program.dart';
 import 'package:wypm_apdp/classes/learner.dart';
 import 'package:wypm_apdp/custom_widgets/custom_text_field.dart';
 import 'package:wypm_apdp/custom_widgets/display_status.dart';
+import 'package:wypm_apdp/custom_widgets/log_out_button.dart';
+import 'package:wypm_apdp/custom_widgets/refresh_button.dart';
 import 'package:wypm_apdp/data.dart';
 import 'package:wypm_apdp/methods/course_program_methods.dart';
 import 'package:wypm_apdp/methods/student_methods.dart';
@@ -25,6 +27,13 @@ class _StudentRegisterPageState extends State<StudentRegisterPage> {
           "Student Registration Page",
           style: TextStyle(color: Colors.white),
         ),
+        actions: [
+          RefreshButton(),
+          const SizedBox(
+            width: 5,
+          ),
+          const LogOutButton(),
+        ],
         backgroundColor: Colors.teal,
       ),
       body: const SafeArea(
@@ -118,19 +127,18 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
 
       if (learnerId.isNotEmpty) {
         displayStatus(context, "Registration Successful");
-        if(_selectedCourses.isNotEmpty){
-          bool status = await methods.enrollLearnerInCourses(newLearner, _selectedCourses);
-          if(status){
+        if (_selectedCourses.isNotEmpty) {
+          bool status = await methods.enrollLearnerInCourses(
+              newLearner, _selectedCourses);
+          if (status) {
             displayStatus(context, "Courses Enrolled!");
-          }else{
+          } else {
             displayStatus(context, "Error Course Enrollment!");
           }
         }
       } else {
         displayStatus(context, "Registration Failed");
       }
-
-
     }
   }
 

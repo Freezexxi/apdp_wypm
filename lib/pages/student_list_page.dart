@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wypm_apdp/classes/learner.dart';
 import 'package:wypm_apdp/custom_widgets/display_status.dart';
+import 'package:wypm_apdp/custom_widgets/log_out_button.dart';
+import 'package:wypm_apdp/custom_widgets/refresh_button.dart';
 import 'package:wypm_apdp/methods/student_methods.dart';
 import 'package:wypm_apdp/pages/learner_edit_page.dart';
 
@@ -42,13 +44,18 @@ class _StudentListPageState extends State<StudentListPage> {
     });
   }
 
-  Future<void> _deleteLearner(String id)async{
+  Future<void> _deleteLearner(String id) async {
     bool status = await _learnerMethods.removeLearner(id);
-    if(status){
+    if (status) {
       displayStatus(context, "Delete Successful");
-    }else{
+    } else {
       displayStatus(context, "Delete Fail!");
     }
+  }
+
+  void refreshPage() {
+    _fetchStudentList();
+    _searchController.text = '';
   }
 
   @override
@@ -56,6 +63,15 @@ class _StudentListPageState extends State<StudentListPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Student List'),
+        actions: [
+          RefreshButton(
+            refreshFunction: refreshPage,
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          const LogOutButton(),
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -152,7 +168,8 @@ class _StudentListPageState extends State<StudentListPage> {
                                               icon: const Icon(Icons.delete,
                                                   color: Colors.red),
                                               onPressed: () {
-                                                _deleteLearner(student.learnerId);
+                                                _deleteLearner(
+                                                    student.learnerId);
                                               },
                                             ),
                                           ],

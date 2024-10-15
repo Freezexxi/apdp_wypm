@@ -38,14 +38,14 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
     _fetchCourses();
   }
 
-  void _resetCourses(){
+  void _resetCourses() {
     setState(() {
-      _newSelectedCourses  = [];
+      _newSelectedCourses = [];
     });
   }
 
-  void _calculateDiscount(){
-    switch (_selectedCourses.length){
+  void _calculateDiscount() {
+    switch (_selectedCourses.length) {
       case 0:
         _discount = 0;
       case 1:
@@ -96,7 +96,8 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
       _finalCourseFee = 0;
       for (var course in _newSelectedCourses) {
         _finalCourseFee += course.feeInMMK;
-      };
+      }
+      ;
 
       // Calculate discount amount
       double discountAmount = _finalCourseFee * (_discount / 100);
@@ -330,7 +331,9 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 40,),
+                  const SizedBox(
+                    height: 40,
+                  ),
                   Row(
                     children: [
                       Expanded(
@@ -363,7 +366,15 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
                     ],
                   ),
                   const SizedBox(height: 40),
-                  EnrollmentRecordTable(learnerId: widget.learner.learnerId)
+                  const Text(
+                    "Enrollment Records!",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  const SizedBox(height: 20),
+                  FittedBox(
+                    alignment: Alignment.center,
+                    child: EnrollmentRecordTable(learnerId: widget.learner.learnerId),
+                  )
                 ],
               ),
             ),
@@ -405,17 +416,17 @@ class _CourseListWidget extends StatelessWidget {
           trailing: isEnrolled
               ? const Icon(Icons.check, color: Colors.green)
               : Checkbox(
-            value: isNewSelected,
-            onChanged: (bool? selected) {
-              if (selected == true) {
-                onCourseSelectionChanged([...newSelectedCourses, course]);
-              } else {
-                onCourseSelectionChanged(
-                  newSelectedCourses.where((c) => c != course).toList(),
-                );
-              }
-            },
-          ),
+                  value: isNewSelected,
+                  onChanged: (bool? selected) {
+                    if (selected == true) {
+                      onCourseSelectionChanged([...newSelectedCourses, course]);
+                    } else {
+                      onCourseSelectionChanged(
+                        newSelectedCourses.where((c) => c != course).toList(),
+                      );
+                    }
+                  },
+                ),
           subtitle: isEnrolled
               ? const Text("enrolled", style: TextStyle(color: Colors.grey))
               : null,

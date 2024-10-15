@@ -337,6 +337,7 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
                 selectedCourses: _selectedCourses,
                 onCourseSelectionChanged: _onCourseSelectionChanged,
               ),
+              Text("Total Cost is: $_totalCourseFees MMK", style: const TextStyle(fontSize: 18),),
               const SizedBox(height: 20),
               Row(
                 children: [

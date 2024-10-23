@@ -24,7 +24,8 @@ class _ManageCoursePageState extends State<ManageCoursePage> {
   final _formKey = GlobalKey<FormState>();
 
   Future<void> _fetchCourse() async {
-    List<CourseProgram> coursesFromDB = await _courseProgramMethods.fetchAllCoursePrograms();
+    List<CourseProgram> coursesFromDB =
+        await _courseProgramMethods.fetchAllCoursePrograms();
     setState(() {
       _courses = coursesFromDB;
     });
@@ -105,7 +106,8 @@ class _ManageCoursePageState extends State<ManageCoursePage> {
                 const SizedBox(height: 10),
                 TextFormField(
                   controller: _feeController,
-                  decoration: const InputDecoration(labelText: 'Course Fee (MMK)'),
+                  decoration:
+                      const InputDecoration(labelText: 'Course Fee (MMK)'),
                   keyboardType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -120,7 +122,8 @@ class _ManageCoursePageState extends State<ManageCoursePage> {
                 const SizedBox(height: 10),
                 TextFormField(
                   controller: _overviewController,
-                  decoration: const InputDecoration(labelText: 'Course Overview'),
+                  decoration:
+                      const InputDecoration(labelText: 'Course Overview'),
                   maxLines: 3,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -133,16 +136,20 @@ class _ManageCoursePageState extends State<ManageCoursePage> {
                 DropdownButtonFormField<String>(
                   value: _selectedDifficulty,
                   items: const [
-                    DropdownMenuItem(value: 'Beginner', child: Text('Beginner')),
-                    DropdownMenuItem(value: 'Intermediate', child: Text('Intermediate')),
-                    DropdownMenuItem(value: 'Advanced', child: Text('Advanced')),
+                    DropdownMenuItem(
+                        value: 'Beginner', child: Text('Beginner')),
+                    DropdownMenuItem(
+                        value: 'Intermediate', child: Text('Intermediate')),
+                    DropdownMenuItem(
+                        value: 'Advanced', child: Text('Advanced')),
                   ],
                   onChanged: (String? newValue) {
                     setState(() {
                       _selectedDifficulty = newValue ?? 'Beginner';
                     });
                   },
-                  decoration: const InputDecoration(labelText: 'Difficulty Level'),
+                  decoration:
+                      const InputDecoration(labelText: 'Difficulty Level'),
                 ),
               ],
             ),
@@ -166,7 +173,8 @@ class _ManageCoursePageState extends State<ManageCoursePage> {
                     difficultyLevel: _selectedDifficulty,
                   );
 
-                  bool status = await _courseProgramMethods.updateCourseProgram(updatedCourse);
+                  bool status = await _courseProgramMethods
+                      .updateCourseProgram(updatedCourse);
 
                   if (status) {
                     displayStatus(context, "Updated Course Program");
@@ -188,46 +196,63 @@ class _ManageCoursePageState extends State<ManageCoursePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Manage Courses"),
-        actions:  [
-          RefreshButton(),
-          const SizedBox(width: 5,),
-          const LogOutButton(),
-        ],
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                _CourseRegistrationForm(
-                  formKey: _formKey,
-                  programNameController: _programNameController,
-                  feeController: _feeController,
-                  overviewController: _overviewController,
-                  selectedDifficulty: _selectedDifficulty,
-                  onDifficultyChanged: (String? newValue) {
-                    if (newValue != null) {
-                      setState(() {
-                        _selectedDifficulty = newValue;
-                      });
-                    }
-                  },
-                  onRegister: _registerCourse,
-                ),
-                const SizedBox(height: 20),
-                _CourseList(
-                  courses: _courses,
-                  onEditCourse: _showEditDialog, // Pass the edit function
-                ),
+        appBar: AppBar(
+          title: const Text(
+            "Manage Courses",
+            style: TextStyle(color: Colors.orange),
+          ),
+          actions: [
+            RefreshButton(),
+            const SizedBox(
+              width: 5,
+            ),
+            const LogOutButton(),
+          ],
+          backgroundColor: Colors.black,
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              colors: [
+                Colors.orange.shade900,
+                Colors.orange.shade800,
+                Colors.orange.shade400,
               ],
             ),
           ),
-        ),
-      ),
-    );
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    _CourseRegistrationForm(
+                      formKey: _formKey,
+                      programNameController: _programNameController,
+                      feeController: _feeController,
+                      overviewController: _overviewController,
+                      selectedDifficulty: _selectedDifficulty,
+                      onDifficultyChanged: (String? newValue) {
+                        if (newValue != null) {
+                          setState(() {
+                            _selectedDifficulty = newValue;
+                          });
+                        }
+                      },
+                      onRegister: _registerCourse,
+                    ),
+                    const SizedBox(height: 20),
+                    _CourseList(
+                      courses: _courses,
+                      onEditCourse: _showEditDialog, // Pass the edit function
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ));
   }
 }
 
@@ -271,7 +296,7 @@ class _CourseRegistrationForm extends StatelessWidget {
             TextFormField(
               controller: programNameController,
               decoration:
-              const InputDecoration(labelText: 'Enter program name'),
+                  const InputDecoration(labelText: 'Enter program name'),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter program name';
@@ -306,7 +331,7 @@ class _CourseRegistrationForm extends StatelessWidget {
             TextFormField(
               controller: overviewController,
               decoration:
-              const InputDecoration(labelText: 'Enter course overview'),
+                  const InputDecoration(labelText: 'Enter course overview'),
               maxLines: 3,
               validator: (value) {
                 if (value == null || value.isEmpty) {

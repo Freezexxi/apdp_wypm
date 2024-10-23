@@ -19,7 +19,8 @@ class _LoginPageState extends State<LoginPage> {
     if (_idController.text == id && _passwordController.text == password) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (BuildContext context) => const NavigationPage(),
+          builder: (BuildContext context) =>
+              const NavigationPage(), //go to Navigation page
         ),
       );
     } else {
@@ -107,33 +108,48 @@ class _LoginPageState extends State<LoginPage> {
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                border: Border(
-                                  bottom:
-                                      BorderSide(color: Colors.grey.shade200),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  colors: [
+                                    Colors.orange.shade900,
+                                    Colors.orange.shade800,
+                                    Colors.orange.shade400
+                                  ],
                                 ),
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextField(
                                 controller: _idController,
                                 decoration: const InputDecoration(
-                                    hintText: "Consultant ID",
-                                    hintStyle: TextStyle(color: Colors.grey),
-                                    border: InputBorder.none),
+                                  hintText: "Consultant ID",
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  border: InputBorder.none,
+                                ),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ),
+                            const SizedBox(height: 10),
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                border: Border(
-                                  bottom:
-                                      BorderSide(color: Colors.grey.shade200),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  colors: [
+                                    Colors.orange.shade900,
+                                    Colors.orange.shade800,
+                                    Colors.orange.shade400
+                                  ],
                                 ),
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextField(
                                 controller: _passwordController,
                                 decoration: const InputDecoration(
-                                    hintText: "Password",
-                                    hintStyle: TextStyle(color: Colors.grey),
-                                    border: InputBorder.none),
+                                  hintText: "Password",
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  border: InputBorder.none,
+                                ),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ),
                           ],
@@ -146,16 +162,23 @@ class _LoginPageState extends State<LoginPage> {
                         height: 50,
                         margin: const EdgeInsets.symmetric(horizontal: 50),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: Colors.orange.shade900),
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                         child: ElevatedButton(
-                          onPressed: login,
+                          onPressed: login, //run login function
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.orange.shade900,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
                           child: const Text(
                             "Login Into Star Education",
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),

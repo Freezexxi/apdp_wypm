@@ -25,7 +25,7 @@ class _StudentRegisterPageState extends State<StudentRegisterPage> {
         centerTitle: true,
         title: const Text(
           "Student Registration Page",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.orange),
         ),
         actions: [
           RefreshButton(),
@@ -34,14 +34,26 @@ class _StudentRegisterPageState extends State<StudentRegisterPage> {
           ),
           const LogOutButton(),
         ],
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.black,
       ),
-      body: const SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _StuRegisterForm(),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [
+              Colors.orange.shade900,
+              Colors.orange.shade800,
+              Colors.orange.shade400,
             ],
+          ),
+        ),
+        child: const SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _StuRegisterForm(),
+              ],
+            ),
           ),
         ),
       ),
@@ -181,7 +193,7 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.teal,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 30),
@@ -190,14 +202,15 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
                   Expanded(
                     child: CustomTextField(
                       controller: _nameCon,
-                      placeholder: 'Enter Full Name',
-                      borderColor: Colors.teal,
+                      placeholder: 'Enter Star Student Full Name',
+                      borderColor: Colors.orange,
                       borderRadius: 12,
-                      placeholderColor: Colors.teal.shade300,
-                      backgroundColor: Colors.teal.shade50,
+                      placeholderColor: Colors.orange,
+                      backgroundColor: Colors.orange.shade50,
                       isFilled: true,
-                      textStyle: const TextStyle(color: Colors.teal),
-                      prefixIcon: const Icon(Icons.person, color: Colors.teal),
+                      textStyle: const TextStyle(color: Colors.orange),
+                      prefixIcon:
+                          const Icon(Icons.person, color: Colors.orange),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter the learner\'s full name';
@@ -214,14 +227,14 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
                   Expanded(
                     child: CustomTextField(
                       controller: _emailCon,
-                      placeholder: 'Email',
-                      borderColor: Colors.teal,
+                      placeholder: 'Enter Star Student Email',
+                      borderColor: Colors.orange,
                       borderRadius: 12,
-                      placeholderColor: Colors.teal.shade300,
-                      backgroundColor: Colors.teal.shade50,
+                      placeholderColor: Colors.orange,
+                      backgroundColor: Colors.orange.shade50,
                       isFilled: true,
-                      textStyle: const TextStyle(color: Colors.teal),
-                      prefixIcon: const Icon(Icons.email, color: Colors.teal),
+                      textStyle: const TextStyle(color: Colors.orange),
+                      prefixIcon: const Icon(Icons.email, color: Colors.orange),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter the learner\'s email';
@@ -238,14 +251,14 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
                   Expanded(
                     child: CustomTextField(
                       controller: _phoneCon,
-                      placeholder: 'Phone Number',
-                      borderColor: Colors.teal,
+                      placeholder: 'Enter Star Student Phone Number',
+                      borderColor: Colors.orange,
                       borderRadius: 12,
-                      placeholderColor: Colors.teal.shade300,
-                      backgroundColor: Colors.teal.shade50,
+                      placeholderColor: Colors.orange,
+                      backgroundColor: Colors.orange.shade50,
                       isFilled: true,
-                      textStyle: const TextStyle(color: Colors.teal),
-                      prefixIcon: const Icon(Icons.phone, color: Colors.teal),
+                      textStyle: const TextStyle(color: Colors.orange),
+                      prefixIcon: const Icon(Icons.phone, color: Colors.orange),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter the learner\'s phone number';
@@ -259,16 +272,16 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
               const SizedBox(height: 20),
               CustomTextField(
                 controller: _addressCon,
-                placeholder: 'Address',
-                borderColor: Colors.teal,
+                placeholder: 'Enter Star Student Address',
+                borderColor: Colors.orange,
                 borderRadius: 12,
-                placeholderColor: Colors.teal.shade300,
-                backgroundColor: Colors.teal.shade50,
+                placeholderColor: Colors.orange,
+                backgroundColor: Colors.orange.shade50,
                 isFilled: true,
-                textStyle: const TextStyle(color: Colors.teal),
+                textStyle: const TextStyle(color: Colors.orange),
                 minLines: 2,
                 maxLines: 4,
-                prefixIcon: const Icon(Icons.home, color: Colors.teal),
+                prefixIcon: const Icon(Icons.home, color: Colors.orange),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the learner\'s address';
@@ -337,7 +350,10 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
                 selectedCourses: _selectedCourses,
                 onCourseSelectionChanged: _onCourseSelectionChanged,
               ),
-              Text("Total Cost is: $_totalCourseFees MMK", style: const TextStyle(fontSize: 18),),
+              Text(
+                "Total Cost is: $_totalCourseFees MMK",
+                style: const TextStyle(fontSize: 18),
+              ),
               const SizedBox(height: 20),
               Row(
                 children: [
@@ -345,7 +361,7 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
                     onPressed: resetFields,
                     child: const Text('Reset'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.redAccent,
+                      backgroundColor: Colors.red,
                       padding: const EdgeInsets.all(20),
                       textStyle: const TextStyle(fontSize: 18),
                     ),
@@ -357,9 +373,10 @@ class _StuRegisterFormState extends State<_StuRegisterForm> {
                     onPressed: registerStudent,
                     child: const Text('Register Student'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal,
+                      backgroundColor: Colors.black,
                       padding: const EdgeInsets.all(20),
-                      textStyle: const TextStyle(fontSize: 18),
+                      textStyle:
+                          const TextStyle(fontSize: 18, color: Colors.orange),
                     ),
                   ),
                 ],
@@ -414,7 +431,7 @@ class _CourseListWidgetState extends State<_CourseListWidget> {
             margin: const EdgeInsets.symmetric(vertical: 8),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: isSelected ? Colors.teal.shade200 : Colors.grey.shade300,
+              color: isSelected ? Colors.black : Colors.grey.shade300,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(

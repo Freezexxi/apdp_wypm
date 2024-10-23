@@ -14,7 +14,6 @@ class CourseProgramMethods {
       status = true;
     } catch (e) {
       print(e);
-
     }
     return status;
   }
@@ -23,7 +22,7 @@ class CourseProgramMethods {
   Future<List<CourseProgram>> fetchAllCoursePrograms() async {
     try {
       QuerySnapshot snapshot =
-      await FirebaseFirestore.instance.collection("coursePrograms").get();
+          await FirebaseFirestore.instance.collection("coursePrograms").get();
 
       List<CourseProgram> programs = snapshot.docs.map((doc) {
         return CourseProgram.fromSnapshot(doc.data() as Map<String, dynamic>);
@@ -44,7 +43,8 @@ class CourseProgramMethods {
           .get();
 
       if (snapshot.docs.isNotEmpty) {
-        return CourseProgram.fromSnapshot(snapshot.docs.first.data() as Map<String, dynamic>);
+        return CourseProgram.fromSnapshot(
+            snapshot.docs.first.data() as Map<String, dynamic>);
       }
       return null;
     } catch (e) {
@@ -86,7 +86,10 @@ class CourseProgramMethods {
   Future<int> getTotalCourseProgramCount() async {
     int programCount = -1;
     try {
-      var data = await FirebaseFirestore.instance.collection("coursePrograms").count().get();
+      var data = await FirebaseFirestore.instance
+          .collection("coursePrograms")
+          .count()
+          .get();
       programCount = data.count ?? 0;
     } catch (e) {
       programCount = -1;

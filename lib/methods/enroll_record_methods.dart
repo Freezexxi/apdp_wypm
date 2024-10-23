@@ -2,23 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:wypm_apdp/classes/enrollment_record.dart';
 
 class EnrollRecordMethods {
-  // Retrieve the total count of enrollment records from Firestore
-  Future<int> fetchTotalEnrollments() async {
-    int enrollmentCount = 0;
-    try {
-      var snapshot = await FirebaseFirestore.instance
-          .collection('enrollments')
-          .count()
-          .get();
-      enrollmentCount = snapshot.count ?? 0;
-    } catch (e) {
-      enrollmentCount = -1;
-    }
-    return enrollmentCount;
-  }
-
   // Retrieve all enrollment records for a specific student from Firestore
-  Future<List<EnrollmentRecord>> fetchEnrollmentsByLearner(String learnerId) async {
+  Future<List<EnrollmentRecord>> fetchEnrollmentsByLearner(
+      String learnerId) async {
     List<EnrollmentRecord> studentEnrollments = [];
     try {
       QuerySnapshot snapshot = await FirebaseFirestore.instance
@@ -55,9 +41,8 @@ class EnrollRecordMethods {
   Future<List<EnrollmentRecord>> fetchAllEnrollments() async {
     List<EnrollmentRecord> enrollments = [];
     try {
-      var snapshot = await FirebaseFirestore.instance
-          .collection('enrollments')
-          .get();
+      var snapshot =
+          await FirebaseFirestore.instance.collection('enrollments').get();
       enrollments = snapshot.docs
           .map((doc) => EnrollmentRecord.fromFirestoreDocument(doc))
           .toList();

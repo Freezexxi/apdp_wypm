@@ -7,7 +7,7 @@ abstract class Individual {
   String get fullName;
 
   String get genderIdentity;
-}
+} //factory mmethod abstract
 
 // Learner class implementing Individual interface
 class Learner implements Individual {
@@ -22,18 +22,18 @@ class Learner implements Individual {
   @override
   String genderIdentity;
   String homeAddress;
-  List<String> enrolledCourses;
+  List<String> enrolledCourses; //data requried for creating Learner objects
 
   // Constructor
   Learner(this.id,
       {required this.fullName,
-        required this.emailAddress,
-        required this.contactNumber,
-        required this.joinedDate,
-        required this.group,
-        required this.genderIdentity,
-        required this.homeAddress,
-        required this.enrolledCourses});
+      required this.emailAddress,
+      required this.contactNumber,
+      required this.joinedDate,
+      required this.group,
+      required this.genderIdentity,
+      required this.homeAddress,
+      required this.enrolledCourses});
 
   String get learnerId => id;
 
@@ -70,7 +70,8 @@ class Learner implements Individual {
     final Timestamp joinedDate = learnerData['joinedDate'] as Timestamp;
 
     // Convert dynamic list to List<String>
-    final List<dynamic> enrolledCoursesDynamic = learnerData['enrolledCourses'] as List<dynamic>;
+    final List<dynamic> enrolledCoursesDynamic =
+        learnerData['enrolledCourses'] as List<dynamic>;
     final List<String> enrolledCourses = enrolledCoursesDynamic.cast<String>();
 
     return learnerFactory(
@@ -145,13 +146,13 @@ class Learner implements Individual {
 class NewLearner extends Learner {
   NewLearner(super.id,
       {required super.fullName,
-        required super.emailAddress,
-        required super.contactNumber,
-        required super.joinedDate,
-        required super.group,
-        required super.homeAddress,
-        required super.genderIdentity,
-        required super.enrolledCourses});
+      required super.emailAddress,
+      required super.contactNumber,
+      required super.joinedDate,
+      required super.group,
+      required super.homeAddress,
+      required super.genderIdentity,
+      required super.enrolledCourses});
 
   @override
   int getDiscount() => 5; // New learners get 5% discount
@@ -161,13 +162,13 @@ class NewLearner extends Learner {
 class SeniorLearner extends Learner {
   SeniorLearner(super.id,
       {required super.fullName,
-        required super.emailAddress,
-        required super.contactNumber,
-        required super.joinedDate,
-        required super.group,
-        required super.homeAddress,
-        required super.genderIdentity,
-        required super.enrolledCourses});
+      required super.emailAddress,
+      required super.contactNumber,
+      required super.joinedDate,
+      required super.group,
+      required super.homeAddress,
+      required super.genderIdentity,
+      required super.enrolledCourses});
 
   @override
   int getDiscount() => 10; // Senior learners get 10% discount
@@ -177,13 +178,13 @@ class SeniorLearner extends Learner {
 class EliteLearner extends Learner {
   EliteLearner(super.id,
       {required super.fullName,
-        required super.emailAddress,
-        required super.contactNumber,
-        required super.joinedDate,
-        required super.group,
-        required super.homeAddress,
-        required super.genderIdentity,
-        required super.enrolledCourses});
+      required super.emailAddress,
+      required super.contactNumber,
+      required super.joinedDate,
+      required super.group,
+      required super.homeAddress,
+      required super.genderIdentity,
+      required super.enrolledCourses});
 
   @override
   int getDiscount() => 20; // Elite learners get 20% discount

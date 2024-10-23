@@ -8,20 +8,21 @@ class EnrollmentRecord {
   String learnerId;
   String learnerName;
   String programId;
-  String programTitle;
+  String programTitle; // Data require for creating EnrollmentRecord object
 
   // Constructor with all required fields
   EnrollmentRecord(this._enrollRecordId,
       {required this.enrollmentDate,
-        required this.discountRate,
-        required this.finalCost,
-        required this.learnerId,
-        required this.learnerName,
-        required this.programId,
-        required this.programTitle});
+      required this.discountRate,
+      required this.finalCost,
+      required this.learnerId,
+      required this.learnerName,
+      required this.programId,
+      required this.programTitle});
 
   // Getter for private recordId
-  String get recordId => _enrollRecordId;
+  String get recordId =>
+      _enrollRecordId; //programId is private and view private ID
 
   // Convert object to a Map (for Firestore)
   Map<String, dynamic> toFirestoreMap() {

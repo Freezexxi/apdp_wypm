@@ -164,7 +164,7 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
           "Edit Learner Information",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.orange,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -180,20 +180,20 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.teal,
+                      color: Colors.orange,
                     ),
                   ),
                   const SizedBox(height: 30),
                   CustomTextField(
                     controller: _nameCon,
                     placeholder: 'Enter Full Name',
-                    borderColor: Colors.teal,
+                    borderColor: Colors.orange,
                     borderRadius: 12,
-                    placeholderColor: Colors.teal.shade300,
-                    backgroundColor: Colors.teal.shade50,
+                    placeholderColor: Colors.orange.shade300,
+                    backgroundColor: Colors.orange.shade50,
                     isFilled: true,
-                    textStyle: const TextStyle(color: Colors.teal),
-                    prefixIcon: const Icon(Icons.person, color: Colors.teal),
+                    textStyle: const TextStyle(color: Colors.orange),
+                    prefixIcon: const Icon(Icons.person, color: Colors.orange),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter the learner\'s full name';
@@ -205,13 +205,13 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
                   CustomTextField(
                     controller: _emailCon,
                     placeholder: 'Email',
-                    borderColor: Colors.teal,
+                    borderColor: Colors.orange,
                     borderRadius: 12,
-                    placeholderColor: Colors.teal.shade300,
-                    backgroundColor: Colors.teal.shade50,
+                    placeholderColor: Colors.orange.shade300,
+                    backgroundColor: Colors.orange.shade50,
                     isFilled: true,
-                    textStyle: const TextStyle(color: Colors.teal),
-                    prefixIcon: const Icon(Icons.email, color: Colors.teal),
+                    textStyle: const TextStyle(color: Colors.orange),
+                    prefixIcon: const Icon(Icons.email, color: Colors.orange),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter the learner\'s email';
@@ -223,13 +223,13 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
                   CustomTextField(
                     controller: _phoneCon,
                     placeholder: 'Phone Number',
-                    borderColor: Colors.teal,
+                    borderColor: Colors.orange,
                     borderRadius: 12,
-                    placeholderColor: Colors.teal.shade300,
-                    backgroundColor: Colors.teal.shade50,
+                    placeholderColor: Colors.orange.shade300,
+                    backgroundColor: Colors.orange.shade50,
                     isFilled: true,
-                    textStyle: const TextStyle(color: Colors.teal),
-                    prefixIcon: const Icon(Icons.phone, color: Colors.teal),
+                    textStyle: const TextStyle(color: Colors.orange),
+                    prefixIcon: const Icon(Icons.phone, color: Colors.orange),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter the learner\'s phone number';
@@ -241,15 +241,15 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
                   CustomTextField(
                     controller: _addressCon,
                     placeholder: 'Address',
-                    borderColor: Colors.teal,
+                    borderColor: Colors.orange,
                     borderRadius: 12,
-                    placeholderColor: Colors.teal.shade300,
-                    backgroundColor: Colors.teal.shade50,
+                    placeholderColor: Colors.orange.shade300,
+                    backgroundColor: Colors.orange.shade50,
                     isFilled: true,
-                    textStyle: const TextStyle(color: Colors.teal),
+                    textStyle: const TextStyle(color: Colors.orange),
                     minLines: 2,
                     maxLines: 4,
-                    prefixIcon: const Icon(Icons.home, color: Colors.teal),
+                    prefixIcon: const Icon(Icons.home, color: Colors.orange),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter the learner\'s address';
@@ -317,7 +317,7 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.teal,
+                          color: Colors.orange,
                         ),
                       ),
                       const SizedBox(width: 20),
@@ -326,7 +326,7 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.teal,
+                          color: Colors.orange,
                         ),
                       ),
                     ],
@@ -355,7 +355,7 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
                           onPressed: _saveChanges,
                           child: const Text('Save Changes'),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.teal,
+                            backgroundColor: Colors.orange,
                             textStyle: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -373,7 +373,8 @@ class _LearnerEditPageState extends State<LearnerEditPage> {
                   const SizedBox(height: 20),
                   FittedBox(
                     alignment: Alignment.center,
-                    child: EnrollmentRecordTable(learnerId: widget.learner.learnerId),
+                    child: EnrollmentRecordTable(
+                        learnerId: widget.learner.learnerId),
                   )
                 ],
               ),

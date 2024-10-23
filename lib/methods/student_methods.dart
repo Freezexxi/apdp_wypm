@@ -27,7 +27,7 @@ class LearnerMethods {
   Future<List<Learner>> fetchAllLearners() async {
     try {
       QuerySnapshot snapshot =
-      await FirebaseFirestore.instance.collection("learners").get();
+          await FirebaseFirestore.instance.collection("learners").get();
 
       List<Learner> learners = snapshot.docs.map((doc) {
         return Learner.fromFirestoreDocument(doc);
@@ -88,7 +88,8 @@ class LearnerMethods {
   }
 
   // Enroll a learner into multiple courses
-  Future<bool> enrollLearnerInCourses(Learner learner, List<CourseProgram> courses) async {
+  Future<bool> enrollLearnerInCourses(
+      Learner learner, List<CourseProgram> courses) async {
     bool enrollmentStatus = false;
     bool allCoursesEnrolled = true;
 
@@ -107,12 +108,12 @@ class LearnerMethods {
 
       for (CourseProgram course in courses) {
         if (!updatedLearner.enrolledCourses.contains(course.programId)) {
-          double discountedAmount = (course.feeInMMK * updatedLearner.getDiscount()) / 100;
+          double discountedAmount =
+              (course.feeInMMK * updatedLearner.getDiscount()) / 100;
           double finalFee = course.feeInMMK - discountedAmount;
           String enrollmentId = uuidGenerator.v1();
 
-          EnrollmentRecord newEnrollment = EnrollmentRecord(
-              enrollmentId,
+          EnrollmentRecord newEnrollment = EnrollmentRecord(enrollmentId,
               enrollmentDate: enrollmentDate,
               discountRate: updatedLearner.getDiscount(),
               finalCost: finalFee,
@@ -122,7 +123,8 @@ class LearnerMethods {
               programTitle: course.programName);
 
           EnrollRecordMethods enrollMethods = EnrollRecordMethods();
-          bool enrollmentSuccess = await enrollMethods.registerEnrollment(newEnrollment);
+          bool enrollmentSuccess =
+              await enrollMethods.registerEnrollment(newEnrollment);
 
           if (!enrollmentSuccess) {
             allCoursesEnrolled = false;
@@ -136,7 +138,7 @@ class LearnerMethods {
         }
       }
 
-      updateLearner(learner);
+      updateLearner(learner); //update the learner's enrolled Course List
       enrollmentStatus = allCoursesEnrolled;
     } catch (e) {
       enrollmentStatus = false;
@@ -148,7 +150,8 @@ class LearnerMethods {
   Future<int> getTotalLearnerCount() async {
     int learnerCount = -1;
     try {
-      var data = await FirebaseFirestore.instance.collection("learners").count().get();
+      var data =
+          await FirebaseFirestore.instance.collection("learners").count().get();
       learnerCount = data.count ?? 0;
     } catch (e) {
       learnerCount = -1;

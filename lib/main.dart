@@ -25,12 +25,10 @@ void main() async {
 }
 
 class App extends StatelessWidget {
-
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Star Education Centre',
@@ -39,7 +37,6 @@ class App extends StatelessWidget {
         appBarTheme: const AppBarTheme(backgroundColor: Colors.cyan),
         useMaterial3: true,
       ),
-
       home: const LoginPage(),
     );
   }

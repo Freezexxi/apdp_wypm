@@ -3,9 +3,9 @@ class CourseProgram {
   String programName;
   double feeInMMK;
   String overview;
-  String difficultyLevel;
+  String difficultyLevel; // Data require for creating courseProgram object
 
-  // Constructor
+  // Building Constructor
   CourseProgram({
     required String programId,
     required this.programName,
@@ -15,9 +15,9 @@ class CourseProgram {
   }) : _programId = programId;
 
   // Getter for programId
-  String get programId => _programId;
+  String get programId => _programId; //programId is private and view private ID
 
-  // Convert Program object to a Map (for Firestore)
+  // Convert Program object to a Map (for Firestore) as Json Object
   Map<String, dynamic> toMap() {
     return {
       'programId': _programId,

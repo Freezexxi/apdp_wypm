@@ -19,7 +19,7 @@ class _NavigationPageState extends State<NavigationPage> {
     const StudentRegisterPage(),
     const StudentListPage(),
     const ManageCoursePage()
-  ];
+  ]; // list pages
 
   void onTabTapped(int index) {
     setState(() {
@@ -46,13 +46,12 @@ class _NavigationPageState extends State<NavigationPage> {
             label: 'List',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.class_sharp
-            ),
+            icon: Icon(Icons.class_sharp),
             label: 'Manage Courses',
           ),
         ],
         currentIndex: _currentIndex,
-        selectedItemColor: Colors.black,
+        selectedItemColor: Colors.orange.shade900,
         unselectedItemColor: Colors.blueGrey,
         onTap: onTabTapped,
       ),
